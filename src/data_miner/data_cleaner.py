@@ -1,5 +1,5 @@
 # --------------------------------------------------
-# data_cleaner.py
+# data_miner/data_cleaner.py
 # --------------------------------------------------
 import json
 from typing import List, Dict, Any

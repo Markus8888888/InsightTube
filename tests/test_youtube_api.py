@@ -1,57 +1,35 @@
-# --------------------------------------------------
-# tests/test_youtube_api.py
-
-import tempfile
 import json
-
-import sys
 import os
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
-
+import tempfile
+import pytest
 
 from data_miner.youtube_api import YouTubeAPI
 
 
-def test_load_dummy_data():
-    yt = YouTubeAPI()
+@pytest.fixture
+def yt():
+    return YouTubeAPI(api_key=None)
 
-    sample = [
-        {"title": "Carrot prices today"},
-        {"title": "Potato market"}
-    ]
 
-    with tempfile.NamedTemporaryFile(mode="w+", delete=False) as f:
+def test_load_dummy_data(yt):
+    sample = [{"title": "Carrot prices today"}, {"title": "Potato market"}]
+
+    with tempfile.NamedTemporaryFile(mode="w", encoding="utf-8", delete=False) as f:
         json.dump(sample, f)
         path = f.name
 
-    data = yt.load_dummy_data(path)
-    assert data == sample
+    try:
+        assert yt.load_dummy_data(path) == sample
+    finally:
+        os.remove(path)
 
 
 def test_search_videos(monkeypatch):
     yt = YouTubeAPI()
+    dummy = [{"title": "Carrot price comparison"}, {"title": "Apple farming"}]
 
-    dummy = [
-        {"title": "Carrot price comparison"},
-        {"title": "Apple farming"}
-    ]
-
-    def mock_loader(path):
-        return dummy
-
-    monkeypatch.setattr(yt, "load_dummy_data", mock_loader)
+    monkeypatch.setattr(yt, "load_dummy_data", lambda _path: dummy)
 
     results = yt.search_videos("carrot")
-
     assert len(results) == 1
     assert "carrot" in results[0]["title"].lower()
-
-
-monkeypatch.setattr(yt, "load_dummy_data", mock_loader)
-
-
-results = yt.search_videos("carrot")
-
-
-assert len(results) == 1
-assert "carrot" in results[0]["title"].lower()

@@ -1,6 +1,6 @@
 # data_miner package
 
-# __init__.py
+# data_miner/__init__.py
 """
 Data Miner package initializer.
 Exposes main classes for easy import.
