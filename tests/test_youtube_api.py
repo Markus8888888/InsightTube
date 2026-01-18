@@ -1,6 +1,6 @@
 import pytest
 
-from data_miner.youtube_api import YouTubeAPI
+from data_miner.youtube_link_processor import YouTubeAPI
 
 
 @pytest.fixture
