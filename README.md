@@ -1,5 +1,5 @@
 ![InsightTube](assets/InsightTube_Logo.png)
-***Understand the audience, one comment at a time.***
+***Understand the audience, through every comment.***
 
 InsightTube is an AI-powered YouTube comment analyzer that transforms thousands of viewer comments into actionable insights. Get instant sentiment analysis, trending topics, controversy detection, and an interactive AI assistant to explore your audience's feedback and summary of the video.
 
