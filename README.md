@@ -88,7 +88,7 @@ Use the AI chat assistant to dive deeper:
 
 **Built with _"Hope for Awareness"_ by the InsightTube Team**
 
-*Understand the audience, one comment at a time.*
+*Understand the audience, through every comment.*
 
 Made for nwhacks 2026
 
